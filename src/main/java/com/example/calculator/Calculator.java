@@ -40,4 +40,8 @@ public class Calculator {
 
         return result;
     }
+
+    public void removeResult() {
+        results.remove(0);
+    }
 }
