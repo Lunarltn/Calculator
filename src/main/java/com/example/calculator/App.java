@@ -16,15 +16,18 @@ public class App {
             int m = sc.nextInt();
             System.out.println("사칙연산 기호를 입력하세요: ");
             char c = sc.next().charAt(0);
-            int result = calculator.calculate(n, m, c);
-            if (!(c == '/' && m == 0))
-                System.out.println("결과: " + result);
 
+            try {
+                int result = calculator.calculate(n, m, c);
+                System.out.println("결과: " + result);
+            } catch (ArithmeticException e) {
+                System.out.println("나눗셈 연산에서 분모(두번째 정수)에 0이 입력될 수 없습니다");
+            }
             System.out.println("더 계산하시겠습니까? (exit 입력 시 종료)");
         }
         while (!sc.next().equals("exit"));
 
-        System.out.println("저장 된 결과값: " + calculator.getResults());
+        System.out.println("연산 된 결과값들: " + calculator.getResults());
         List<Integer> results = calculator.getResults();
         results.add(1000);
         calculator.setResults(results);

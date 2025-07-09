@@ -15,7 +15,7 @@ public class Calculator {
         this.results = results;
     }
 
-    public int calculate(int n, int m, char c) {
+    public int calculate(int n, int m, char c) throws ArithmeticException {
         int result = 0;
         switch (c) {
             case '+':
@@ -28,20 +28,19 @@ public class Calculator {
                 result = n * m;
                 break;
             case '/':
-                if (m == 0) {
-                    System.out.println("나눗셈 연산에서 분모(두번째 정수)에 0이 입력될 수 없습니다");
-                    return 0;
+                try {
+                    result = n / m;
+                } catch (ArithmeticException e) {
+                    throw e;
                 }
-                result = n / m;
                 break;
         }
-
         results.add(result);
-
         return result;
     }
 
     public void removeResult() {
         results.remove(0);
     }
+
 }
