@@ -22,5 +22,4 @@ public class App {
         }
         while (!sc.next().equals("exit"));
     }
-
 }
