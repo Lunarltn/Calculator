@@ -15,19 +15,19 @@ public class ArithmeticCalculator {
         this.results = results;
     }
 
-    public int calculate(int n, int m, char c) throws ArithmeticException {
+    public int calculate(int n, int m, OperatorType o) throws ArithmeticException {
         int result = 0;
-        switch (c) {
-            case '+':
+        switch (o) {
+            case SUM:
                 result = n + m;
                 break;
-            case '-':
+            case SUB:
                 result = n - m;
                 break;
-            case '*':
+            case MUL:
                 result = n * m;
                 break;
-            case '/':
+            case DIV:
                 try {
                     result = n / m;
                 } catch (ArithmeticException e) {

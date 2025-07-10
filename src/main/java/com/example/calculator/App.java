@@ -3,7 +3,6 @@ package com.example.calculator;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
-import java.util.function.Function;
 
 public class App {
     public static void main(String[] args) {
@@ -16,7 +15,7 @@ public class App {
             System.out.println("두 번째 숫자를 입력하세요: ");
             int m = safeNextInt(sc);
             System.out.println("사칙연산 기호를 입력하세요: ");
-            char c = safeNextChar(sc);
+            OperatorType c = safeNextOperation(sc);
 
             try {
                 int result = calculator.calculate(n, m, c);
@@ -48,17 +47,12 @@ public class App {
         }
     }
 
-    public static char safeNextChar(Scanner sc) {
+    public static OperatorType safeNextOperation(Scanner sc) {
         while (true) {
             try {
                 char c = sc.next().charAt(0);
-                if (c == '+' || c == '-' || c == '*' || c == '/')
-                    return c;
-                else {
-                    System.out.println("[Error] 올바른 사칙연산 기호를 입력해 주세요.");
-                    sc.nextLine();
-                }
-            } catch (InputMismatchException e) {
+                return OperatorType.getType(c);
+            } catch (Exception e) {
                 System.out.println("[Error] 올바른 사칙연산 기호를 입력해 주세요.");
                 sc.nextLine();
             }
