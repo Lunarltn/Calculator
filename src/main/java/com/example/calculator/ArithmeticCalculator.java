@@ -3,7 +3,7 @@ package com.example.calculator;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Calculator {
+public class ArithmeticCalculator {
     // 연산 결과 저장
     private List<Integer> results = new ArrayList<Integer>();
 

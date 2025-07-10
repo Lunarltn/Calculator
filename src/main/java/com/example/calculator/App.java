@@ -1,21 +1,22 @@
 package com.example.calculator;
 
-import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
+import java.util.function.Function;
 
 public class App {
     public static void main(String[] args) {
-        Calculator calculator = new Calculator();
+        ArithmeticCalculator calculator = new ArithmeticCalculator();
         Scanner sc = new Scanner(System.in);
 
         do {
             System.out.println("첫 번째 숫자를 입력하세요: ");
-            int n = sc.nextInt();
+            int n = safeNextInt(sc);
             System.out.println("두 번째 숫자를 입력하세요: ");
-            int m = sc.nextInt();
+            int m = safeNextInt(sc);
             System.out.println("사칙연산 기호를 입력하세요: ");
-            char c = sc.next().charAt(0);
+            char c = safeNextChar(sc);
 
             try {
                 int result = calculator.calculate(n, m, c);
@@ -34,5 +35,33 @@ public class App {
         System.out.println("1000을 넣고 변경 된 결과값: " + calculator.getResults());
         calculator.removeResult();
         System.out.println("가장 먼저 저장된 데이터 삭제 후 변경 된 결과값: " + calculator.getResults());
+    }
+
+    public static int safeNextInt(Scanner sc) {
+        while (true) {
+            try {
+                return sc.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("[Error] 숫자를 입력해 주세요.");
+                sc.nextLine();
+            }
+        }
+    }
+
+    public static char safeNextChar(Scanner sc) {
+        while (true) {
+            try {
+                char c = sc.next().charAt(0);
+                if (c == '+' || c == '-' || c == '*' || c == '/')
+                    return c;
+                else {
+                    System.out.println("[Error] 올바른 사칙연산 기호를 입력해 주세요.");
+                    sc.nextLine();
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("[Error] 올바른 사칙연산 기호를 입력해 주세요.");
+                sc.nextLine();
+            }
+        }
     }
 }
