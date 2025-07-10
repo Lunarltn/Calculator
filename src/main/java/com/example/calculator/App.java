@@ -1,6 +1,5 @@
 package com.example.calculator;
 
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -28,12 +27,17 @@ public class App {
         while (!sc.next().equals("exit"));
 
         System.out.println("연산 된 결과값들: " + calculator.getResults());
+        System.out.println("입력된 수 보다 큰 수 조회: ");
+        Number input = safeNextNumber(sc);
+        List<Number> filter = calculator.getResults().stream().filter(num -> num.doubleValue() > input.doubleValue()).toList();
+        System.out.println(input + " 보다 큰 수\n" + filter);
         List<Number> results = calculator.getResults();
         results.add(1000);
         calculator.setResults(results);
         System.out.println("1000을 넣고 변경 된 결과값: " + calculator.getResults());
         calculator.removeResult();
         System.out.println("가장 먼저 저장된 데이터 삭제 후 변경 된 결과값: " + calculator.getResults());
+
     }
 
     public static Number safeNextNumber(Scanner sc) {
