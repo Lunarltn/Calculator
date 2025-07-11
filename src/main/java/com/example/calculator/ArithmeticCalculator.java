@@ -1,5 +1,7 @@
 package com.example.calculator;
 
+import com.example.enums.CalculationOperator;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +17,7 @@ public class ArithmeticCalculator<T extends Number> {
         this.results = results;
     }
 
-    public Number calculate(T n, T m, OperatorType o) throws ArithmeticException {
+    public Number calculate(T n, T m, CalculationOperator o) throws ArithmeticException {
         double result = calculate(n.doubleValue(), m.doubleValue(), o);
 
         if (result % 1 == 0) {
@@ -27,7 +29,7 @@ public class ArithmeticCalculator<T extends Number> {
 
     }
 
-    double calculate(double n, double m, OperatorType o) throws ArithmeticException {
+    double calculate(double n, double m, CalculationOperator o) throws ArithmeticException {
         return switch (o) {
             case SUM -> n + m;
             case SUB -> n - m;

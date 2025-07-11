@@ -1,6 +1,6 @@
-package com.example.calculator;
+package com.example.enums;
 
-public enum OperatorType {
+public enum CalculationOperator {
     SUM('+'),
     SUB('-'),
     MUL('*'),
@@ -8,7 +8,7 @@ public enum OperatorType {
 
     private final char symbol;
 
-    OperatorType(char c) {
+    CalculationOperator(char c) {
         this.symbol = c;
     }
 
@@ -16,8 +16,8 @@ public enum OperatorType {
         return symbol;
     }
 
-    public static OperatorType getType(char c) {
-        for (OperatorType type : values()) {
+    public static CalculationOperator getType(char c) {
+        for (CalculationOperator type : values()) {
             if (type.symbol == c) {
                 return type;
             }
